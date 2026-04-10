@@ -448,7 +448,9 @@ function BookingForm({ onReset }) {
         <Input label="Or share a link (optional)" value={f.refLink} onChange={set("refLink")}
           placeholder="Pinterest board, Google Drive, or Instagram link" />
         <Callout>
-          Share <strong>style references</strong> — how you want it to look — not just subject references. Search "black and grey engraving tattoo", "ornamental fine line tattoo", "prison style tattoo", or "dot work tattoo" on Pinterest to find the right direction.
+          Share <strong>style references</strong> — how you want it to look — not just subject references. Search "black and grey engraving tattoo", "ornamental fine line tattoo", "prison tats style tattoo", or "dot work tattoo" on Pinterest to find the right direction.
+          <br /><br />
+          📎 After submitting, send your reference images directly to <strong>isla.ink.co@gmail.com</strong> or via Instagram DM <strong>@isla_ink.co</strong>.
         </Callout>
         <Textarea label="What do you like about your references? (optional)" value={f.refNotes} onChange={set("refNotes")} rows={3}
           placeholder="E.g. Love the thick outlines. Don't want any grey wash or colour fill." />
@@ -459,7 +461,7 @@ function BookingForm({ onReset }) {
         <Chips label="Approximate size" value={f.size} onChange={set("size")} required
           options={['Small (< 3")', 'Medium (3–5")', 'Large (5–8")', 'Sleeve / XL']} />
         <Select label="Body placement" value={f.placement} onChange={set("placement")} required
-          options={["Forearm", "Upper arm", "Shoulder", "Chest", "Back", "Ribs", "Hand / Fingers", "Leg", "Calf / Ankle", "Neck", "Other"]} />
+          options={["Forearm", "Upper arm", "Shoulder", "Chest", "Back", "Ribs", "Hand", "Leg", "Calf / Ankle", "Other"]} />
         <Textarea label="Describe placement more precisely (optional)" value={f.placementDetail} onChange={set("placementDetail")} rows={2}
           placeholder="E.g. Inner left forearm, starting 2 inches above the wrist" />
         <HRule slim />
@@ -606,7 +608,7 @@ function Landing({ onStart }) {
           <span style={{ color: ACCENT, fontStyle: "italic" }}>Ink.</span>
         </div>
         <div style={{ fontFamily: MONO, fontSize: 10, color: DIM, letterSpacing: 3, marginTop: 16 }}>
-          BLACK & GREY · ENGRAVING · FINE & BOLD LINEWORK · ORNAMENTAL · PRISON · DOT WORK
+          BLACK & GREY · ENGRAVING · FINE & BOLD LINEWORK · ORNAMENTAL · PRISON TATS · DOT WORK
         </div>
       </div>
 
@@ -640,7 +642,7 @@ function Landing({ onStart }) {
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         {[
-          ["Style",    "Black & grey · Engraving · Fine & bold linework · Ornamental · Prison · Dot work"],
+          ["Style",    "Black & grey · Engraving · Fine & bold linework · Ornamental · Prison Tats · Dot work"],
           ["Location", "SBMA, Olongapo"],
           ["Walk-ins", "Subject to availability"],
           ["Payment",  "GCash · Cash · Maya"],

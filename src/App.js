@@ -353,7 +353,7 @@ function BookingForm({ onReset }) {
   const [f, setF] = useState({
     name: "", via: "Instagram", contact: "",
     description: "",
-    refImages: [], refLink: "", refNotes: "",
+    refLink: "", refNotes: "",
     size: "", placement: "", placementDetail: "",
     budget: "",
     firstTattoo: "", skinNotes: "",
@@ -444,11 +444,10 @@ function BookingForm({ onReset }) {
 
       {/* ── Step 2: References ── */}
       {step === 2 && <>
-        <ImageUpload label="Upload reference image(s) (optional)" value={f.refImages} onChange={set("refImages")} />
-        <Input label="Or share a link (optional)" value={f.refLink} onChange={set("refLink")}
+        <Input label="Reference image link (optional)" value={f.refLink} onChange={set("refLink")}
           placeholder="Pinterest board, Google Drive, or Instagram link" />
         <Callout>
-          Share <strong>style references</strong> — how you want it to look — not just subject references. Search "black and grey engraving tattoo", "ornamental fine line tattoo", "prison tats style tattoo", or "dot work tattoo" on Pinterest to find the right direction.
+          Share <strong>style references</strong> — how you want it to look — not just subject references. Search "black and grey engraving tattoo", "ornamental fine line tattoo", "prison tats tattoo", or "dot work tattoo" on Pinterest to find the right direction.
           <br /><br />
           📎 After submitting, send your reference images directly to <strong>isla.ink.co@gmail.com</strong> or via Instagram DM <strong>@isla_ink.co</strong>.
         </Callout>
@@ -503,7 +502,7 @@ function BookingForm({ onReset }) {
             ["Size",        f.size],
             ["Placement",   f.placement],
             ["Budget",      f.budget || "Quote requested"],
-            ["References",  f.refImages.length > 0 ? `${f.refImages.length} image(s) uploaded` : f.refLink || "None"],
+            ["Reference",   f.refLink || "None provided"],
             ["Date",        f.date],
             ["Time",        f.time || "Flexible"],
             ["Payment",     f.payment || "TBD"],
@@ -575,7 +574,7 @@ function Success({ name, onReset }) {
       <HRule />
       <p style={{ fontFamily: MONO, fontSize: 12, color: MUTED, lineHeight: 2, margin: "0 0 28px" }}>
         Thank you, <span style={{ color: INK }}>{name}</span>.<br />
-        Isla will review your submission and reach out<br />
+        I will review your submission and reach out<br />
         within 24–48 hours to confirm availability.
       </p>
       <div style={{ fontFamily: MONO, fontSize: 9, color: DIM, letterSpacing: 3, marginBottom: 8 }}>
@@ -617,7 +616,7 @@ function Landing({ onStart }) {
         fontFamily: SERIF, fontSize: 18, fontStyle: "italic",
         color: MUTED, lineHeight: 1.7, marginBottom: 32,
       }}>
-        Custom tattoos, designed for you. Fill out this form and Isla will be in touch to confirm your appointment.
+        Custom tattoos, designed for you. Fill out this form and I will be in touch to confirm your appointment.
       </p>
 
       <button

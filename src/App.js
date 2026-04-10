@@ -362,6 +362,42 @@ function BookingForm({ onReset }) {
   });
   const set = k => v => setF(p => ({ ...p, [k]: typeof v === "function" ? v(p[k]) : v }));
 
+  const encode = (data) => Object.keys(data).map(k =>
+    encodeURIComponent(k) + "=" + encodeURIComponent(
+      Array.isArray(data[k]) ? data[k].join(", ") : (data[k] || "")
+    )
+  ).join("&");
+
+  const handleSubmit = async () => {
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "isla-ink-booking",
+          name: f.name,
+          contact_via: f.via,
+          contact: f.contact,
+          tattoo_description: f.description,
+          reference_link: f.refLink,
+          reference_notes: f.refNotes,
+          size: f.size,
+          placement: f.placement,
+          placement_detail: f.placementDetail,
+          budget: f.budget,
+          first_tattoo: f.firstTattoo,
+          health_notes: f.skinNotes,
+          preferred_date: f.date,
+          preferred_time: f.time,
+          payment: f.payment,
+        }),
+      });
+    } catch (e) {
+      console.error("Form submission error", e);
+    }
+    setDone(true);
+  };
+
   const valid = () => {
     if (step === 0) return f.name && f.contact;
     if (step === 1) return f.description.length > 15;
@@ -514,7 +550,7 @@ function BookingForm({ onReset }) {
           : <div />}
         {step < STEPS.length - 1
           ? <Btn onClick={() => setStep(s => s + 1)} disabled={!valid()}>Continue →</Btn>
-          : <Btn onClick={() => setDone(true)} disabled={!valid()}>Submit booking</Btn>}
+          : <Btn onClick={handleSubmit} disabled={!valid()}>Submit booking</Btn>}
       </div>
     </div>
   );
@@ -570,7 +606,7 @@ function Landing({ onStart }) {
           <span style={{ color: ACCENT, fontStyle: "italic" }}>Ink.</span>
         </div>
         <div style={{ fontFamily: MONO, fontSize: 10, color: DIM, letterSpacing: 3, marginTop: 16 }}>
-          BLACK & GREY · ENGRAVING · FINE & BOLD LINEWORK · ORNAMENTAL · PRISON TATS · DOT WORK
+          BLACK & GREY · ENGRAVING · FINE & BOLD LINEWORK · ORNAMENTAL · PRISON · DOT WORK
         </div>
       </div>
 
@@ -604,7 +640,7 @@ function Landing({ onStart }) {
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         {[
-          ["Style",    "Black & grey · Engraving · Fine & bold linework · Ornamental · Prison Tats · Dot work"],
+          ["Style",    "Black & grey · Engraving · Fine & bold linework · Ornamental · Prison · Dot work"],
           ["Location", "SBMA, Olongapo"],
           ["Walk-ins", "Subject to availability"],
           ["Payment",  "GCash · Cash · Maya"],
@@ -636,14 +672,16 @@ export default function App() {
       display: "flex",
       alignItems: "flex-start",
       justifyContent: "center",
-      padding: "40px 16px 80px",
+      padding: "0",
     }}>
       <div style={{
         width: "100%", maxWidth: 480,
         background: PAPER,
         borderTop: `3px solid ${ACCENT}`,
-        padding: "36px 32px",
+        padding: "28px 20px 60px",
         boxShadow: "0 4px 6px #0000000a, 0 20px 48px #00000012",
+        minHeight: "100vh",
+        boxSizing: "border-box",
       }}>
         {!started
           ? <Landing onStart={() => setStarted(true)} />
